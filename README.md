@@ -1,5 +1,7 @@
 # password-encoder
 
+Spring Security's PasswordEncoder in go
+
 ## spring-security-crypto
 
 - [Password Storage :: Spring Security](https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html)
