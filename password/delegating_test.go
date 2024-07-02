@@ -46,6 +46,7 @@ func TestDelegatingPasswordEncoder_Matches(t *testing.T) {
 	idToPasswordEncoder := map[string]PasswordEncoder{
 		"bcrypt": NewBCryptPasswordEncoder(bcrypt.DefaultCost),
 		"pbkdf2": DefaultPbkdf2PasswordEncoder(),
+		"scrypt": DefaultSCryptPasswordEncoder(),
 		"sm3":    NewSm3PasswordEncoder(saltGen),
 		"sha256": NewSha256PasswordEncoder(saltGen),
 	}
