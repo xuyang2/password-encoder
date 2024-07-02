@@ -2,6 +2,11 @@
 
 Spring Security's PasswordEncoder in go
 
+<div align="center">
+<a href="https://github.com/xuyang2/password-encoder/actions"><img src="https://github.com/xuyang2/password-encoder/workflows/Go/badge.svg" alt="Build Status"/></a>
+<a href="https://codecov.io/gh/xuyang2/password-encoder"><img src="https://codecov.io/gh/xuyang2/password-encoder/graph/badge.svg" alt="Coverage Status"/></a>
+</div>
+
 ## spring-security-crypto
 
 - [Password Storage :: Spring Security](https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html)
