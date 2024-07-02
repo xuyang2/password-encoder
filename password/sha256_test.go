@@ -1,6 +1,7 @@
 package password
 
 import (
+	"crypto/sha256"
 	"errors"
 	"testing"
 
@@ -24,13 +25,12 @@ func TestSha256PasswordEncoder_Matches(t *testing.T) {
 		assert.NotEqual(t, rawPassword, encodedPassword)
 		assert.True(t, encoder.Matches(rawPassword, encodedPassword))
 		assert.False(t, encoder.Matches(rawPassword+"a", encodedPassword))
-	})
 
-	t.Run("err", func(t *testing.T) {
-		rawPassword := "password"
-		encodedPassword := "gg" // invalid hex
+		assert.False(t, encoder.Matches(rawPassword, encodedPassword[0:sha256.Size-1])) // odd length hex string
+		assert.False(t, encoder.Matches(rawPassword, encodedPassword[0:sha256.Size-2])) // encodedPassword too short
 
-		assert.False(t, encoder.Matches(rawPassword, encodedPassword))
+		assert.False(t, encoder.Matches(rawPassword, "gg")) // invalid hex
+		assert.False(t, encoder.Matches(rawPassword, ""))
 	})
 }
 

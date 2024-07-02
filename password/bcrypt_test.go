@@ -20,6 +20,8 @@ func TestBCryptPasswordEncoder_Matches(t *testing.T) {
 		assert.NotEqual(t, rawPassword, encodedPassword)
 		assert.True(t, encoder.Matches(rawPassword, encodedPassword))
 		assert.False(t, encoder.Matches(rawPassword+"a", encodedPassword))
+
+		assert.False(t, encoder.Matches(rawPassword, ""))
 	})
 
 	t.Run("err", func(t *testing.T) {
