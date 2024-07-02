@@ -58,7 +58,7 @@ func (e *DelegatingPasswordEncoder) Matches(rawPassword string, prefixEncodedPas
 	return delegate.Matches(rawPassword, encodedPassword)
 }
 
-func (e *DelegatingPasswordEncoder) Upgradable(prefixEncodedPassword string) bool {
+func (e *DelegatingPasswordEncoder) UpgradeEncoding(prefixEncodedPassword string) bool {
 	id := extractId(prefixEncodedPassword, e.idPrefix, e.idSuffix)
 
 	if e.idForEncode != id {
@@ -72,7 +72,7 @@ func (e *DelegatingPasswordEncoder) Upgradable(prefixEncodedPassword string) boo
 	}
 
 	encodedPassword := extractEncodedPassword(prefixEncodedPassword, e.idSuffix)
-	return delegate.Upgradable(encodedPassword)
+	return delegate.UpgradeEncoding(encodedPassword)
 }
 
 func extractId(prefixEncodedPassword string, idPrefix, idSuffix string) string {

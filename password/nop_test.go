@@ -58,10 +58,10 @@ func TestNopPasswordEncoder_Matches(t *testing.T) {
 	}
 }
 
-func TestNopPasswordEncoder_Upgradable(t *testing.T) {
+func TestNopPasswordEncoder_UpgradeEncoding(t *testing.T) {
 	t.Run("always false", func(t *testing.T) {
 		encoder := NopPasswordEncoder()
 
-		assert.Equal(t, false, encoder.Upgradable("password"))
+		assert.Equal(t, false, encoder.UpgradeEncoding("password"))
 	})
 }

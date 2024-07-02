@@ -55,6 +55,6 @@ func (e *Sha256PasswordEncoder) digest(rawPassword string, salt []byte) []byte {
 	return saltDigest
 }
 
-func (e *Sha256PasswordEncoder) Upgradable(encodedPassword string) bool {
+func (e *Sha256PasswordEncoder) UpgradeEncoding(encodedPassword string) bool {
 	return false
 }

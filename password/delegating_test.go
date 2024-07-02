@@ -96,7 +96,7 @@ func TestDelegatingPasswordEncoder_Encode(t *testing.T) {
 	})
 }
 
-func TestDelegatingPasswordEncoder_Upgradable(t *testing.T) {
+func TestDelegatingPasswordEncoder_UpgradeEncoding(t *testing.T) {
 
 	saltGen := keygen.NewSecureRandomBytesKeyGenerator(8)
 
@@ -115,17 +115,17 @@ func TestDelegatingPasswordEncoder_Upgradable(t *testing.T) {
 		idToPasswordEncoder:      idToPasswordEncoder,
 	}
 
-	t.Run("not upgradable", func(t *testing.T) {
+	t.Run("not UpgradeEncoding", func(t *testing.T) {
 		encodedPassword, err := delegatingEncoder.Encode("password")
 		require.NoError(t, err)
 
-		assert.Equal(t, false, delegatingEncoder.Upgradable(encodedPassword))
+		assert.Equal(t, false, delegatingEncoder.UpgradeEncoding(encodedPassword))
 	})
 
 	t.Run("different encode id", func(t *testing.T) {
 		encodedPassword := "{noop}password"
 
-		assert.Equal(t, true, delegatingEncoder.Upgradable(encodedPassword))
+		assert.Equal(t, true, delegatingEncoder.UpgradeEncoding(encodedPassword))
 	})
 
 	t.Run("encode id not found", func(t *testing.T) {
@@ -148,7 +148,7 @@ func TestDelegatingPasswordEncoder_Upgradable(t *testing.T) {
 
 		delete(delegatingEncoder.idToPasswordEncoder, "bcrypt")
 
-		assert.Equal(t, false, delegatingEncoder.Upgradable(encodedPassword))
+		assert.Equal(t, false, delegatingEncoder.UpgradeEncoding(encodedPassword))
 	})
 }
 

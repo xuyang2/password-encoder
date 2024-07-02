@@ -35,13 +35,13 @@ func TestBCryptPasswordEncoder_Matches(t *testing.T) {
 	})
 }
 
-func TestBCryptPasswordEncoder_Upgradable(t *testing.T) {
+func TestBCryptPasswordEncoder_UpgradeEncoding(t *testing.T) {
 	t.Run("always false", func(t *testing.T) {
 		encoder := NewBCryptPasswordEncoder(bcrypt.DefaultCost)
 
 		encodedPassword, err := encoder.Encode("password")
 		require.NoError(t, err)
 
-		assert.Equal(t, false, encoder.Upgradable(encodedPassword))
+		assert.Equal(t, false, encoder.UpgradeEncoding(encodedPassword))
 	})
 }

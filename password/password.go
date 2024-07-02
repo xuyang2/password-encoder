@@ -6,5 +6,5 @@ type PasswordEncoder interface {
 
 	Matches(rawPassword string, encodedPassword string) bool
 
-	Upgradable(encodedPassword string) bool
+	UpgradeEncoding(encodedPassword string) bool
 }

@@ -49,13 +49,13 @@ func TestPbkdf2PasswordEncoder_Encode(t *testing.T) {
 	})
 }
 
-func TestPbkdf2PasswordEncoder_Upgradable(t *testing.T) {
+func TestPbkdf2PasswordEncoder_UpgradeEncoding(t *testing.T) {
 	t.Run("always false", func(t *testing.T) {
 		encoder := DefaultPbkdf2PasswordEncoder()
 
 		encodedPassword, err := encoder.Encode("password")
 		require.NoError(t, err)
 
-		assert.Equal(t, false, encoder.Upgradable(encodedPassword))
+		assert.Equal(t, false, encoder.UpgradeEncoding(encodedPassword))
 	})
 }

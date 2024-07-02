@@ -25,7 +25,7 @@ func (e *BCryptPasswordEncoder) Matches(rawPassword string, encodedPassword stri
 	return err == nil
 }
 
-func (e *BCryptPasswordEncoder) Upgradable(encodedPassword string) bool {
+func (e *BCryptPasswordEncoder) UpgradeEncoding(encodedPassword string) bool {
 	// TODO: compare cost
 	return false
 }

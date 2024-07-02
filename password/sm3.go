@@ -54,6 +54,6 @@ func (e *Sm3PasswordEncoder) digest(rawPassword string, salt []byte) []byte {
 	return saltDigest
 }
 
-func (e *Sm3PasswordEncoder) Upgradable(encodedPassword string) bool {
+func (e *Sm3PasswordEncoder) UpgradeEncoding(encodedPassword string) bool {
 	return false
 }

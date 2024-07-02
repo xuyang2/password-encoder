@@ -65,6 +65,6 @@ func (e *Pbkdf2PasswordEncoder) Matches(rawPassword string, encodedPassword stri
 	return bytes.Equal(saltKey, e.encode(rawPassword, salt))
 }
 
-func (e *Pbkdf2PasswordEncoder) Upgradable(encodedPassword string) bool {
+func (e *Pbkdf2PasswordEncoder) UpgradeEncoding(encodedPassword string) bool {
 	return false
 }

@@ -15,6 +15,6 @@ func (e nopPasswordEncoder) Matches(rawPassword string, encodedPassword string) 
 	return rawPassword == encodedPassword
 }
 
-func (e nopPasswordEncoder) Upgradable(encodedPassword string) bool {
+func (e nopPasswordEncoder) UpgradeEncoding(encodedPassword string) bool {
 	return false
 }

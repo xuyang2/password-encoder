@@ -45,7 +45,7 @@ func TestSm3PasswordEncoder_Encode(t *testing.T) {
 	})
 }
 
-func TestSm3PasswordEncoder_Upgradable(t *testing.T) {
+func TestSm3PasswordEncoder_UpgradeEncoding(t *testing.T) {
 	t.Run("always false", func(t *testing.T) {
 		encoder := Sm3PasswordEncoder{
 			saltGen: keygen.NewSecureRandomBytesKeyGenerator(8),
@@ -54,6 +54,6 @@ func TestSm3PasswordEncoder_Upgradable(t *testing.T) {
 		encodedPassword, err := encoder.Encode("password")
 		require.NoError(t, err)
 
-		assert.Equal(t, false, encoder.Upgradable(encodedPassword))
+		assert.Equal(t, false, encoder.UpgradeEncoding(encodedPassword))
 	})
 }
