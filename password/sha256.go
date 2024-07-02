@@ -35,6 +35,9 @@ func (e *Sha256PasswordEncoder) Matches(rawPassword string, encodedPassword stri
 		return false
 	}
 
+	if len(digested) < sha256.Size {
+		return false
+	}
 	salt := make([]byte, len(digested)-sha256.Size)
 	copy(salt, digested[0:len(digested)-sha256.Size])
 

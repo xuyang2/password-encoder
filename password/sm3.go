@@ -34,6 +34,9 @@ func (e *Sm3PasswordEncoder) Matches(rawPassword string, encodedPassword string)
 		return false
 	}
 
+	if len(digested) < sm3.Size {
+		return false
+	}
 	salt := make([]byte, len(digested)-sm3.Size)
 	copy(salt, digested[0:len(digested)-sm3.Size])
 
