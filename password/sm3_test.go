@@ -14,7 +14,7 @@ import (
 
 func TestSm3PasswordEncoder_Matches(t *testing.T) {
 	encoder := Sm3PasswordEncoder{
-		saltGen: keygen.NewSecureRandomBytesKeyGenerator(8),
+		saltGen: keygen.NewSecureRandomBytesKeyGenerator(16),
 	}
 
 	t.Run("ok", func(t *testing.T) {
@@ -48,7 +48,7 @@ func TestSm3PasswordEncoder_Encode(t *testing.T) {
 func TestSm3PasswordEncoder_UpgradeEncoding(t *testing.T) {
 	t.Run("always false", func(t *testing.T) {
 		encoder := Sm3PasswordEncoder{
-			saltGen: keygen.NewSecureRandomBytesKeyGenerator(8),
+			saltGen: keygen.NewSecureRandomBytesKeyGenerator(16),
 		}
 
 		encodedPassword, err := encoder.Encode("password")

@@ -13,7 +13,7 @@ import (
 
 func TestNewDelegatingPasswordEncoder(t *testing.T) {
 	t.Run("ok", func(t *testing.T) {
-		saltGen := keygen.NewSecureRandomBytesKeyGenerator(8)
+		saltGen := keygen.NewSecureRandomBytesKeyGenerator(16)
 		idToPasswordEncoder := map[string]PasswordEncoder{
 			"bcrypt": NewBCryptPasswordEncoder(bcrypt.DefaultCost),
 			"sm3":    NewSm3PasswordEncoder(saltGen),
@@ -25,7 +25,7 @@ func TestNewDelegatingPasswordEncoder(t *testing.T) {
 	})
 
 	t.Run("panics idForEncode not found", func(t *testing.T) {
-		saltGen := keygen.NewSecureRandomBytesKeyGenerator(8)
+		saltGen := keygen.NewSecureRandomBytesKeyGenerator(16)
 		idToPasswordEncoder := map[string]PasswordEncoder{
 			"bcrypt": NewBCryptPasswordEncoder(bcrypt.DefaultCost),
 			"sm3":    NewSm3PasswordEncoder(saltGen),
@@ -41,7 +41,7 @@ func TestNewDelegatingPasswordEncoder(t *testing.T) {
 
 func TestDelegatingPasswordEncoder_Matches(t *testing.T) {
 
-	saltGen := keygen.NewSecureRandomBytesKeyGenerator(8)
+	saltGen := keygen.NewSecureRandomBytesKeyGenerator(16)
 
 	idToPasswordEncoder := map[string]PasswordEncoder{
 		"bcrypt": NewBCryptPasswordEncoder(bcrypt.DefaultCost),
@@ -99,7 +99,7 @@ func TestDelegatingPasswordEncoder_Encode(t *testing.T) {
 
 func TestDelegatingPasswordEncoder_UpgradeEncoding(t *testing.T) {
 
-	saltGen := keygen.NewSecureRandomBytesKeyGenerator(8)
+	saltGen := keygen.NewSecureRandomBytesKeyGenerator(16)
 
 	idToPasswordEncoder := map[string]PasswordEncoder{
 		"bcrypt": NewBCryptPasswordEncoder(bcrypt.DefaultCost),
